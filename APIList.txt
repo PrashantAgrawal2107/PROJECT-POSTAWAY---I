@@ -1,0 +1,26 @@
+Hii , I have implemented total 14 APIs....
+
+
+1. Siginup API
+2. Siginin API
+3. Get all posts
+4. Get one post
+5. Get user's posts
+6. Create a post
+7. Delete a post
+8. Update a post
+9. Write comment
+10. Get comments
+11. Delete comment
+12. Update comments
+13. Get likes
+14. Toggle like status
+
+....APIs 3-14 are secured with "JWT AUTHENTICATION"
+
+....You can go through all the APIs using "localhost:3000/api-docs"
+This is the simple and clear documention provided using Swagger UI.
+
+ThankYou,
+
+PRASHANT AGRAWAL

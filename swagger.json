@@ -1,0 +1,484 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "version":"1.0.0",
+        "description":"APIs for Postway application by PRASHANT AGRAWAL",
+        "title":"POSTWAY API"
+    },
+    "servers":[
+        {
+            "url" : "http://localhost:3000"
+        }
+    ],
+    "components":{
+        "securitySchemes":{
+            "JWT":{
+                "in":"header",
+                "name":"Authorization",
+                "type": "apiKey"
+            }
+        }
+    },
+
+    "paths":
+    {
+        "/api/posts/all": {
+            "get":
+            {
+                "tags": ["Posts"],
+                "summary":"Get All Posts",
+                "description":"User will get all posts",
+                "security":[{"JWT": {} }],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+
+        "/api/posts": {
+            "get":
+            {
+                "tags": ["Posts"],
+                "summary":"Get My Posts",
+                "description":"User will get his/her posts",
+                "security":[{"JWT": {} }],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+
+            "post":
+            {
+                "tags": ["Posts"],
+                "summary":"Create a Post",
+                "description":"To create a new post",
+                "security":[{"JWT": {} }],
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "content":{
+                                        "type": "string"
+                                    },
+                                    "imageUrl":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":
+                {
+                    "201": {
+                        "description":"Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+
+        "/api/posts/{id}": {
+            "get":
+            {
+                "tags": ["Posts"],
+                "summary":"Get Post",
+                "description":"To get post with specific ID",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "404":{
+                        "description":"Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete":
+            {
+                "tags": ["Posts"],
+                "summary":"Delete Post",
+                "description":"To delete a post with specific ID",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put":
+            {
+                "tags": ["Posts"],
+                "summary":"Update Post",
+                "description":"To update a post with specific ID",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "content":{
+                                        "type": "string"
+                                    },
+                                    "imageUrl":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+
+        },
+
+        "/api/comment/{id}": {
+            "get":
+            {
+                "tags": ["Comment"],
+                "summary":"Get Comments",
+                "description":"To get comments on a specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "required":true,
+                        "description":"ID of the post to retrieve the comments",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "404":{
+                        "description":"Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "post":
+            {
+                "tags": ["Comment"],
+                "summary":"Add comment",
+                "description":"To write a comment on specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "comment":{
+                                        "comment": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "404":{
+                        "description":"Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "delete":
+            {
+                "tags": ["Comment"],
+                "summary":"Delete Comment",
+                "description":"To delete commment on a specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put":
+            {
+                "tags": ["Comment"],
+                "summary":"Update Comment",
+                "description":"To update comment on a specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "comment":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+
+        },
+
+        
+    
+        "/api/like/{id}": {
+            "get":
+            {
+                "tags": ["Like"],
+                "summary":"Get Likes",
+                "description":"To get likes on a specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+
+        "/api/like/toggle/{id}": {
+            "get":
+            {
+                "tags": ["Like"],
+                "summary":"Toggle Like status",
+                "description":"To change like status on a specific Post",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "required":"true",
+                        "in":"path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":
+                {
+                    "200": {
+                        "description":"OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+
+        "/api/users/signin": 
+        {
+            "post":
+            {
+                "tags": ["Users"],
+                "summary":"Login",
+                "description":"User login to get token",
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200": {
+                        "description":"OK"
+                    },
+                    "400": {
+                        "description": "Incorrect Credentials"
+                    }
+                }
+            }
+        },
+
+        "/api/users/signup": 
+        {
+            "post":
+            {
+                "tags": ["Users"],
+                "summary":"Signup",
+                "description":"User registration",
+                "requestBody":
+                {
+                    "content":
+                    {
+                        "application/json":{
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201": {
+                        "description":"Created"
+                    }
+                }
+            }
+        }
+    }
+}
